@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "AddMaterialMasterDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AddMaterialMasterDetails</h1>
+
+<form method="post">
+    <label style="color:red">
+@TempData["errormessage"]
+    </label>
+    <table>
+        <tr>
+            <td>
+                Material Name
+            </td>
+            <td>
+                <input type="text" name="MaterialName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Quantity
+            </td>
+            <td>
+                <input type="text" name="Quantity" />
+            </td>
+        </tr>
+        <tr style="height:20px">
+           
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Save" asp-controller="MaterialManagment" asp-action="Savematerial" />
+            </td>
+            <td>
+                <input type="submit" value="Update" asp-controller="MaterialManagment" asp-action="UpdateMaterial" />
+                <input type="submit" value="Test Linq" asp-controller="MaterialManagment" asp-action="TestLinq" />
+            </td>
+        </tr>
+    </table>
+</form>
+

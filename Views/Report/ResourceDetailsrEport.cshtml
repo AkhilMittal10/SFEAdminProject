@@ -1,0 +1,119 @@
+﻿@model List<tbl_ResourceMaster>
+@{
+    ViewData["Title"] = "ResourceDetailsrEport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ResourceDetailsrEport</h1>
+
+
+<style>
+    table th, td {
+        border: 2px solid black;
+        width: 20%;
+        background-color: lightpink;
+    }
+</style>
+
+<form method="post">
+    <input type="text" name="searchResource" style="text-align:left" placeholder="Search By Resource Name" />
+    <input type="text" name="searchResourceType" placeholder="Search by Type" />
+    <input type="submit" value="Search" asp-controller="Report" asp-action="Search" />
+    @*<span style="float:right;">
+            <input type="submit" value="Download Report" asp-controller="Report" asp-action="ResourceDetailsrEport" />
+        </span>*@
+    <input type="submit" value="Download Report" style="float:right" asp-controller="Report" asp-action="DownloadReport" />
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>
+                Resource Name
+            </th>
+            <th>
+                Resource Type
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                PhoneNo
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Designation Level
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td> @Model[i].ResourcName </td>
+
+                <td>
+                    @if (Model[i].ResourceType == "1")
+                    {
+                        <p>Worker</p>
+                    }
+                    @if (Model[i].ResourceType == "2")
+                    {
+                        <p>staff</p>
+                    }
+                    @if (Model[i].ResourceType == "3")
+                    {
+                        <p>
+                            Foreman
+                        </p>
+                    }
+                    @if (Model[i].ResourceType == "4")
+                    {
+                        <p>
+                            Mechanical Engineer
+                        </p>
+                    }
+                    @if (Model[i].ResourceType == "5")
+                    {
+                        <p>
+                            Electrical Engineer
+                        </p>
+                    }
+
+
+                </td>
+
+                <td> @Model[i].Address </td>
+
+                <td> @Model[i].Email </td>
+                <td> @Model[i].PhoneNo </td>
+                <td> @Model[i].Salary </td>
+                <td>
+                    @if (Model[i].Salary > 70000)
+                    {
+                        <span>level 1</span>
+                    }
+                    @if (Model[i].Salary >= 50000 && Model[i].Salary < 70000)
+                    {
+                        <span>LEVEL2</span>
+                    }
+                    @if (Model[i].Salary >= 40000 && Model[i].Salary < 50000)
+                    {
+                        <span>LEVEL3</span>
+                    }
+                    @if (Model[i].Salary >= 30000 && Model[i].Salary < 40000)
+                    {
+                        <span>LEVEL4</span>
+                    }
+                    @if (Model[i].Salary < 30000)
+                    {
+                        <span>LEVEL5</span>
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+</form>

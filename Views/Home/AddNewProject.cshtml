@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "AddNewProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    function isValidUSZip() {
+        var sZip = document.getElementById("zip").value;
+        var result = /^\d{6}(-\d{4})?$/.test(sZip);
+        if (result == false) {
+            alert('Invalid Zip!');
+        }
+        return result;
+    }
+</script>
+
+<h1>AddNewProject</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                Project Name
+            </td>
+            <td>
+                <input type="text" name="ProjectName" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Client Name
+            </td>
+            <td>
+                <input type="text" name="ClientName" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Project City
+            </td>
+            <td>
+                <input type="text" name="ProjectCity" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Project State
+            </td>
+            <td>
+                <input type="text" name="ProjectState" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Project Address
+            </td>
+            <td>
+                <input type="text" name="ProjectAddress"  required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Project Zip
+            </td>
+            <td>
+                <input id="zip" type="number" name="ProjectZip" onKeyPress="if(this.value.length==6) return false;" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save" asp-controller="Home" asp-action="SaveProject" onclick="return isValidUSZip();" />
+            </td>
+        </tr>
+
+    </table>
+</form>
+

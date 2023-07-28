@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "AddNewResource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<label style="color:red">
+    @TempData["Message1"]
+</label>
+
+<h1>AddNewResource</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                Resource Name
+            </td>
+            <td>
+                <input type="text" name="ResourceName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Resource Type
+            </td>
+            <td>
+                <select name="ResourceType">
+                    <option value="0">--Select Resource Type--</option>
+                    <option value="1">Worker</option>
+                    <option value="2">Staff</option>
+                    <option value="3">Foreman</option>
+                    <option value="4">Mechanical Engineer</option>
+                    <option value="5">Electrical Engineer</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address
+            </td>
+            <td>
+                <input type="text" name="Address" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" name="Email" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone No
+            </td>
+            <td>
+                <input type="text" name="PhoneNo" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Salary
+            </td>
+            <td>
+                <input type="text" name="Salary" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" value="Save" asp-controller="ResouceMaster" asp-action="SaveResourceMaster" />
+            </td>
+        </tr>
+
+    </table>
+</form>
+
