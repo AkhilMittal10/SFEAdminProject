@@ -22,10 +22,9 @@ namespace SfeAdminPortal.Controllers
 
         [Route("/Main/")]
         [Route("")]
-       public IActionResult Index()
+        public IActionResult Index()
         {
-           
-            return View(); 
+            return View();
         }
 
         public IActionResult AddNewProject()
@@ -80,5 +79,35 @@ namespace SfeAdminPortal.Controllers
         {
             return View();
         }
+        public IActionResult AddResourceSalaryDetails()
+        {
+            var ResourceList = _context.tbl_ResourceMaster.ToList();
+            ViewBag.Resourcedetails = ResourceList;
+
+            return View();
+        }
+
+        public IActionResult SaveResourceSalaryDetails()
+        {
+            int Resourceid = Convert.ToInt32(Request.Form["ResourceList"]);
+            int MonthlySalary = Convert.ToInt32(Request.Form["MonthlySalary"]);
+            int YearlySalary = Convert.ToInt32(Request.Form["YearlySalary"]);
+            int TDS = Convert.ToInt32(Request.Form["TDS"]);
+            int EPF = Convert.ToInt32(Request.Form["EPF"]);
+            int Bonus = Convert.ToInt32(Request.Form["Bonus"]);
+
+            tbl_ResourceSalaryDetails obj = new tbl_ResourceSalaryDetails();
+            obj.ResourceID = Resourceid;
+            obj.MonthlySalary = MonthlySalary;
+            obj.YearlySalary = YearlySalary;
+            obj.TDS = TDS;
+            obj.EPF = EPF;
+            obj.Bonus = Bonus;
+            _context.tbl_ResourceSalaryDetails.Add(obj);
+            _context.SaveChanges();
+
+            return RedirectToAction("AddResourceSalaryDetails");
+        }
+
     }
 }
