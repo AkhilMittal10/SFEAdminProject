@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "AddResourceSalaryDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AddResourceSalaryDetails</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                Resource
+            </td>
+            <td>
+                @Html.DropDownList("ResourceList",new SelectList(ViewBag.Resourcedetails, "ResourceID", "ResourcName"),"Please Select Resource")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                MonthlySalary
+            </td>
+            <td>
+                <input type="text" name="MonthlySalary" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                YearlySalary
+            </td>
+            <td>
+                <input type="text" name="YearlySalary" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TDS
+            </td>
+            <td>
+                <input type="text" name="TDS" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                EPF
+            </td>
+            <td>
+                <input type="text" name="EPF" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Bonus
+            </td>
+            <td>
+                <input type="text" name="Bonus" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save" asp-controller="home" asp-action="SaveResourceSalaryDetails" />
+            </td>
+
+        </tr>
+    </table>
+</form>
+
+
