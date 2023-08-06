@@ -1,0 +1,70 @@
+﻿@model List<MaterialPurchaseModel>
+
+@{
+    ViewData["Title"] = "MaterialPurchaseReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MaterialPurchaseReport</h1>
+
+<form>
+    <style>
+        table th, td {
+            border: 2px solid black;
+            width: 20%;
+            background-color:aqua;
+            text-align: center
+        }
+    </style>
+    <table>
+        <tr>
+           <th>
+                MaterialID
+           </th>
+           <th>
+                Quantity
+           </th>
+           <th>
+                PerPiecePrice
+           </th>
+           <th>
+                POTotal
+           </th>
+           <th>
+                CreatedDate
+           </th>
+           <th>
+                Status
+           </th>
+           <th>
+                TransactionType
+           </th>
+        </tr>
+        @for(int i=0;i<Model.Count;i++)
+        {
+            <tr>
+                <td>
+                    @Model[i].MaterialID
+                </td>
+                <td>
+                    @Model[i].Quantity
+                </td>
+                <td>
+                    @Model[i].PerPiecePrice
+                </td>
+                <td>
+                    @Model[i].POTotal
+                </td>
+                <td>
+                    @Model[i].CreateDate
+                </td>
+                <td>
+                    @Model[i].Status
+                </td>
+                <td>
+                    @Model[i].TransactionType
+                </td>
+            </tr>
+        }
+    </table>
+</form>

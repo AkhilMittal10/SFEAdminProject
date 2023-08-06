@@ -21,6 +21,8 @@ namespace SfeAdminPortal.Models
         public DbSet<tbl_MaterialQty> tbl_MaterialQty { get; set; }
         public DbSet<tbl_ErrorLogs> tbl_ErrorLogs { get; set; }
         public DbSet<tbl_ResourceSalaryDetails> tbl_ResourceSalaryDetails { get; set; }
+        public DbSet<tbl_MaterialPO> tbl_MaterialPO { get; set; }
+        public DbSet<tbl_OrderStatus> tbl_OrderStatus { get; set; }
 
 
 

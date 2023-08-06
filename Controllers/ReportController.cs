@@ -127,6 +127,26 @@ namespace SfeAdminPortal.Controllers
 
             return View(lst);
         }
+        public IActionResult MaterialPurchaseReport()
+        {
+           List<MaterialPurchaseModel> lst = new List<MaterialPurchaseModel>();
+           lst = (from matPO in _context.tbl_MaterialPO
+                  join OrdStatus in _context.tbl_OrderStatus
+                  on matPO.ID equals OrdStatus.POID
+                  select new MaterialPurchaseModel
+                  {
+                      MaterialID = matPO.MaterialID,
+                      Quantity = matPO.Quantity,
+                      PerPiecePrice = matPO.PerPiecePrice,
+                      POTotal = matPO.POTotal,
+                      CreateDate = matPO.CreateDate,
+                      Status = OrdStatus.Status,
+                      TransactionType = OrdStatus.TransactionType
+                  }).ToList();
+
+           
+            return View(lst);
+        }
     }
 
 }
