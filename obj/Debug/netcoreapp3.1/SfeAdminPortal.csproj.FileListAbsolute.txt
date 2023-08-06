@@ -178,3 +178,4 @@ D:\Projects_Practice\SfeAdminPortal\obj\Debug\netcoreapp3.1\staticwebassets\msbu
 D:\Projects_Practice\SfeAdminPortal\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.SfeAdminPortal.props
 D:\Projects_Practice\SfeAdminPortal\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.SfeAdminPortal.props
 D:\Projects_Practice\SfeAdminPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddResourceSalaryDetails.cshtml.g.cs
+D:\Projects_Practice\SfeAdminPortal\obj\Debug\netcoreapp3.1\Razor\Views\HRMS\Index.cshtml.g.cs

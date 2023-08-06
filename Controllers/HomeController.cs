@@ -84,7 +84,9 @@ namespace SfeAdminPortal.Controllers
             var ResourceList = _context.tbl_ResourceMaster.ToList();
             ViewBag.Resourcedetails = ResourceList;
 
-            return View();
+             List<tbl_ResourceSalaryDetails> obj1=new List<tbl_ResourceSalaryDetails>();
+            obj1=_context.tbl_ResourceSalaryDetails.ToList();
+            return View(obj1);
         }
 
         public IActionResult SaveResourceSalaryDetails()
@@ -108,6 +110,11 @@ namespace SfeAdminPortal.Controllers
 
             return RedirectToAction("AddResourceSalaryDetails");
         }
+        //public IActionResult Updatelist(string resourceId)
+        //{
+        //    //var updatelist = _context.tbl_ResourceSalaryDetails.Where(x => x.ResourceID == Convert.ToInt16(resourceId)).FirstOrDefault();
+        //    return View();
+        //}
 
     }
 }

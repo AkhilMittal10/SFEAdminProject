@@ -1,7 +1,27 @@
-﻿@{
+﻿@model List<tbl_ResourceSalaryDetails>
+
+@{
     ViewData["Title"] = "AddResourceSalaryDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script>
+    function updateTable(resId,monthsalary,yearlysalary,tds,epf,bonus){
+        document.getElementById('txtMonthlySalary').value = monthsalary;
+        document.getElementById('txtYearlySalary').value = yearlysalary;
+        document.getElementById('txtTDS').value = tds;
+        document.getElementById('txtEPF').value = epf;
+        document.getElementById('txtBonus').value = bonus;
+        document.getElementById('ResourceList').value = resId;
+
+        document.getElementById('savebtn').style.display = 'none';
+        document.getElementById('updatebtn').style.display = 'block';
+
+
+        return false;
+    }
+</script>
+
 
 <h1>AddResourceSalaryDetails</h1>
 <form method="post">
@@ -19,7 +39,7 @@
                 MonthlySalary
             </td>
             <td>
-                <input type="text" name="MonthlySalary" />
+                <input id="txtMonthlySalary" type="text" name="MonthlySalary" />
             </td>
         </tr>
         <tr>
@@ -27,7 +47,7 @@
                 YearlySalary
             </td>
             <td>
-                <input type="text" name="YearlySalary" />
+                <input id="txtYearlySalary" type="text" name="YearlySalary" />
             </td>
         </tr>
         <tr>
@@ -35,7 +55,7 @@
                 TDS
             </td>
             <td>
-                <input type="text" name="TDS" />
+                <input id="txtTDS" type="text" name="TDS" />
             </td>
         </tr>
         <tr>
@@ -43,7 +63,7 @@
                 EPF
             </td>
             <td>
-                <input type="text" name="EPF" />
+                <input id="txtEPF" type="text" name="EPF" />
             </td>
         </tr>
         <tr>
@@ -51,15 +71,75 @@
                 Bonus
             </td>
             <td>
-                <input type="text" name="Bonus" />
+                <input id="txtBonus" type="text" name="Bonus" />
             </td>
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Save" asp-controller="home" asp-action="SaveResourceSalaryDetails" />
+                <input id="savebtn" type="submit" value="Save"  style="display:block" asp-controller="home" asp-action="SaveResourceSalaryDetails" />
+                <input id="updatebtn" type="submit" value="UpdateRecord" style="display:none" />
             </td>
 
         </tr>
+    </table>
+
+    <hr />
+
+    <table style="align-content:center;border-block-style:solid;width:30%; " border="1">
+        <th>
+            ResourceID
+        </th>
+        <th>
+            MonthlySalary
+        </th>
+        <th>
+            Yearlysalay
+        </th>
+        <th>
+            TDS
+        </th>
+        <th>
+            EPF
+        </th>
+        <th>
+            Bonus
+        </th>
+        <th>
+            Action
+        </th>
+       
+         @for(int i=0;i<Model.Count;i++)
+         {
+        
+         <tr>
+             <td>
+                    @Model[i].ResourceID
+             </td>
+             <td>
+                    @Model[i].MonthlySalary
+             </td>            
+            
+             <td>
+                    @Model[i].YearlySalary
+             </td>
+             <td>
+                    @Model[i].TDS
+             </td>
+             <td>
+                    @Model[i].EPF
+             </td>
+             <td>
+                    @Model[i].Bonus
+             </td> 
+             <td>
+                    <a href="" onclick="return updateTable(@Model[i].ResourceID,@Model[i].MonthlySalary,@Model[i].YearlySalary,@Model[i].TDS, @Model[i].EPF, @Model[i].Bonus)">Update</a>
+             </td>
+                
+         </tr>
+         }
+           
+        
+        
     </table>
 </form>
 
