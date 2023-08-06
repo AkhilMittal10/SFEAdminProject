@@ -5,17 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<style>
+    table th, td {
+        border: 2px solid black;
+        width: 20%;
+        background-color: aqua;
+        text-align: center
+    }
+</style>
+
+
 <h1>MaterialPurchaseReport</h1>
 
-<form>
-    <style>
-        table th, td {
-            border: 2px solid black;
-            width: 20%;
-            background-color:aqua;
-            text-align: center
-        }
-    </style>
+<form method="post">
+    <input type="text"  name="txtSearch" />
+    <input type="submit"  value="Search" asp-controller="Report" asp-action="Filter"/>
+    <input type="submit" value="Show All Data" asp-controller="Report" asp-action="MaterialPurchaseReport" />
+    <hr />
     <table>
         <tr>
            <th>
