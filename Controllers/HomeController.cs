@@ -20,8 +20,8 @@ namespace SfeAdminPortal.Controllers
             _context = context;
         }
 
-        [Route("/Main/")]
-        [Route("")]
+        //[Route("/Main/")]
+        //[Route("")]
         public IActionResult Index()
         {
             return View();

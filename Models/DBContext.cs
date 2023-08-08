@@ -9,6 +9,7 @@ namespace SfeAdminPortal.Models
 {
     public class DBContext : DbContext
     {
+       
         public DBContext(DbContextOptions options) : base(options)
         {
 
@@ -23,6 +24,8 @@ namespace SfeAdminPortal.Models
         public DbSet<tbl_ResourceSalaryDetails> tbl_ResourceSalaryDetails { get; set; }
         public DbSet<tbl_MaterialPO> tbl_MaterialPO { get; set; }
         public DbSet<tbl_OrderStatus> tbl_OrderStatus { get; set; }
+
+        public DbSet<Users> Users { get; set; }
 
 
 
