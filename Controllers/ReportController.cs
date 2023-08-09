@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using OfficeOpenXml;
 using Microsoft.AspNetCore.Http;
 using OfficeOpenXml.Style;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace SfeAdminPortal.Controllers
 {
@@ -20,6 +22,7 @@ namespace SfeAdminPortal.Controllers
 
         [Route("/Report/ReportIndex/")]
         [Route("/Report/Index/")]
+        [Authorize(Roles = "AdminUser")]
         public IActionResult Index()
         {
             ViewBag.abc = "sss";

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SfeAdminPortal.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SfeAdminPortal.Controllers
 {
+    [Authorize(Roles = "NormalUser,AdminUser")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -3,6 +3,9 @@ using SfeAdminPortal.Models;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace SfeAdminPortal.Controllers
 {
@@ -30,6 +33,16 @@ namespace SfeAdminPortal.Controllers
             }
             else
             {
+                //Create the identity for the user  
+                ClaimsIdentity identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, Name),
+                    new Claim(ClaimTypes.Role, tbl.Roles)
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
                 return RedirectToAction("Index", "Home");
             }
             

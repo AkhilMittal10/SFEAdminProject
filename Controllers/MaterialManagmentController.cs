@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SfeAdminPortal.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SfeAdminPortal.Controllers
 {
+    [Authorize(Roles = "AdminUser,NormalUser")]
     public class MaterialManagmentController : Controller
     {
         private readonly DBContext _context;
@@ -21,6 +23,8 @@ namespace SfeAdminPortal.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "AdminUser")]
         public IActionResult AddMaterialMasterDetails()
         {
 
