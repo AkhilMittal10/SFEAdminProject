@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SfeAdminPortal.Controllers
 {
-    [Route("api/APIController")]
+    [Route("api/API/")]
     [ApiController]
     public class APIController : ControllerBase
     {
@@ -25,15 +25,28 @@ namespace SfeAdminPortal.Controllers
             return res;
         }
 
-        [Route("api/GetProjectResource")]
+        
         [HttpGet]
-        public IEnumerable<tbl_ProjectResources> GetProjectResource()
+        [Route("GetProjectResource/")]
+        public IEnumerable<tbl_MaterialMaster> GetProjectResource()
         {
-            List<tbl_ProjectResources> res = new List<tbl_ProjectResources>();
-            res = _context.tbl_ProjectResources.ToList();
+            List<tbl_MaterialMaster> res = new List<tbl_MaterialMaster>();
+            res = _context.tbl_MaterialMaster.ToList();
             return res;
         }
-             
+
+        [HttpPost]
+        [Route("AddMaterialMaster/")]
+        public string AddMaterialMaster(string materialName)
+        {
+            tbl_MaterialMaster material = new tbl_MaterialMaster();
+            material.MaterialName = materialName;
+            _context.tbl_MaterialMaster.Add(material);
+            _context.SaveChanges();
+
+            return "Material Added Sucessfully!!";
+        }
+
 
     }
 }
