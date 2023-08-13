@@ -72,7 +72,7 @@ namespace SfeAdminPortal.Controllers
             string MaterialNam = Request.Form["MaterialName"];
             int MaterialQuan = Convert.ToInt32(Request.Form["Quantity"]);
 
-            int MaterialID = _context.tbl_MaterialMaster.Where(s => s.MaterialName == MaterialNam).Select(x=>x.MaterialID).FirstOrDefault();
+            int MaterialID = _context.tbl_MaterialMaster.Where(s => s.MaterialName == MaterialNam).Select(x => x.MaterialID).FirstOrDefault();
 
             var MaterialQtyRecord = _context.tbl_MaterialQty.Where(s => s.MaterialID == MaterialID).FirstOrDefault();
             MaterialQtyRecord.Quantity = MaterialQuan;
@@ -126,6 +126,57 @@ namespace SfeAdminPortal.Controllers
             _context.SaveChanges();
 
             return View("AddMaterialMasterDetails");
+        }
+        public IActionResult CreateNewPO()
+        {
+            //List<tbl_MaterialMaster> list_resources = new List<tbl_MaterialMaster>();
+            var list_resources = _context.tbl_MaterialMaster.Select(x => new { x.MaterialID, x.MaterialName }).ToList();
+            ViewBag.MaterialList = list_resources;
+            return View();
+        }
+        public IActionResult Save()
+        {
+            int MaterialID = Convert.ToInt32(Request.Form["ddlMaterial"]);
+            int Quantity = Convert.ToInt32(Request.Form["txtQuantity"]);
+            int PerPiecePrice = Convert.ToInt32(Request.Form["txtPerPiecePrice"]);
+            int POTotal = Convert.ToInt32(Request.Form["txtPOTotal"]);
+            DateTime Createdate = System.DateTime.Now;
+
+            tbl_MaterialPO po = new tbl_MaterialPO();
+            po.MaterialID = MaterialID;
+            po.Quantity = Quantity;
+            po.PerPiecePrice = PerPiecePrice;
+            po.POTotal = POTotal;
+            po.CreateDate = Createdate;
+
+            _context.tbl_MaterialPO.Add(po);
+            _context.SaveChanges();
+
+            //Add logic for Add/Update in tbl_MaterialQty
+            var materialid = _context.tbl_MaterialQty.Where(X => X.MaterialID == MaterialID).FirstOrDefault();
+            if(materialid!=null)
+            {
+                materialid.Quantity = materialid.Quantity + Quantity;
+                _context.SaveChanges();
+            }
+            else
+            {
+                tbl_MaterialQty id = new tbl_MaterialQty();
+               
+                id.MaterialID = MaterialID;
+                id.Quantity = Quantity;
+                _context.tbl_MaterialQty.Add(id);
+                _context.SaveChanges();
+
+            }
+
+
+
+            TempData["POMsg"] = "PO Created Successfully";
+            
+
+            return RedirectToAction("CreateNewPO", "MaterialManagment");
+
         }
     }
 }

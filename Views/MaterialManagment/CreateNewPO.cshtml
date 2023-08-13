@@ -1,0 +1,51 @@
+﻿
+
+<script>
+    function myfunction(){
+    document.getElementById("txtPOTotal").value= ((document.getElementById("txtQuantity").value) * (document.getElementById("txtPerPiecePrice").value));
+    }
+</script>
+
+
+<form method="post">
+    <label>@TempData["POMsg"]</label>
+
+    <table>
+        <tr>
+            <td>
+                Material
+            </td>
+           <td>
+               @Html.DropDownList("ddlMaterial", new SelectList(ViewBag.MaterialList, "MaterialID","MaterialName"), "-- Please Select Material --")
+           </td>
+        </tr>
+        <td>
+            Quantity
+        </td>
+        <td>
+            <input id="txtQuantity" type="text" name="txtQuantity" />
+        </td>
+        <tr>
+            <td>
+                PerPiecePrice
+            </td>
+            <td>
+                <input id="txtPerPiecePrice" type="text" name="txtPerPiecePrice"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                POTotal
+            </td>
+            <td>
+                <input id="txtPOTotal" type="text" name="txtPOTotal" oninput="myfunction()"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <input type="submit" value="Save" asp-controller="MaterialManagment"  asp-action="Save"/>
+            </td>
+            
+        </tr>
+    </table/>
+</form>
