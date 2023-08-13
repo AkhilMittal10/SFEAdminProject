@@ -118,5 +118,10 @@ namespace SfeAdminPortal.Controllers
         //    return View();
         //}
 
+        public void Sum(int a, int b)
+        {
+            int c = a + b;
+        }
+
     }
 }
