@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Http;
 using OfficeOpenXml.Style;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using SfeAdminPortal.MyExtensions;
 
 namespace SfeAdminPortal.Controllers
 {
+    [Authorize(Roles = "AdminUser,NormalUser")]
     public class ReportController : Controller
     {
         private readonly DBContext _context;
@@ -22,13 +24,22 @@ namespace SfeAdminPortal.Controllers
 
         [Route("/Report/ReportIndex/")]
         [Route("/Report/Index/")]
-        [Authorize(Roles = "AdminUser")]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             ViewBag.abc = "sss";
             ViewData["abc"] = "sss";
             TempData["abc"] = "sss";
 
+            int ii = 10;
+            int jj = 20;
+            int k = ii.GetSmallerValue(jj);
+
+            //var result = Generics.GetValue<int>(5);
+
+            string[] strArray = new string[] { "Akhil", "Raj", "Ravi", "Rajesh" };
+            
+            
             return View();
         }
         public IActionResult Search()
@@ -134,8 +145,7 @@ namespace SfeAdminPortal.Controllers
         {
            List<MaterialPurchaseModel> lst = new List<MaterialPurchaseModel>();
            lst = (from matPO in _context.tbl_MaterialPO
-                  join OrdStatus in _context.tbl_OrderStatus
-                  on matPO.ID equals OrdStatus.POID
+                  join OrdStatus in _context.tbl_OrderStatus on matPO.ID equals OrdStatus.POID
                   select new MaterialPurchaseModel
                   {
                       MaterialID = matPO.MaterialID,

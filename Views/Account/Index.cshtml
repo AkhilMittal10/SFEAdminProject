@@ -4,6 +4,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        
+        $.ajax({
+            type: "GET",
+            url: "/api/API/GetProjectResource",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                //console.log(data);
+                var s = '';
+                $.each(data, function (key, val) {
+                    s += '<tr>';
+                    s += '<td>' + val.materialID + '</td>';
+                    s += '<td>' + val.materialName + '</td>';
+                    s += '</tr>';
+                });
+                $("#tblMaterialData").append(s);
+            }
+        });
+
+    });
+
+</script>
+
+
 <h1>Account Index</h1>
 
 @{
@@ -15,4 +44,13 @@
 @{ 
     Html.RenderPartial("View");
 }
+
+<hr />
+
+<table id="tblMaterialData">
+    <tr>
+        <th>Material ID</th>
+        <th>Material Name</th>
+    </tr>
+</table>
 
