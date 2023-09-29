@@ -4,5 +4,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    table th, td {
+        border: 2px solid black;
+        width: 20%;
+        background-color: lightpink;
+        text-align: center
+    }
+</style>
+
+<script src="~/js/myscript.js"></script>
+<script src="~/js/newscript.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "/api/API/GetProjectResource",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var s = '';
+                $.each(data, function (key, val) {
+                    s += '<tr>';
+                    s += '<td>' + val.materialID + '</td>';
+                    s += '<td>' + val.materialName + '</td>';
+                    s += '</tr>';
+                });
+                $("#tblMaterialList").append(s);
+            }
+        });
+
+    });
+</script>
+
+
 <h1>Index</h1>
+
+Enter Name : <input type="text" id="txtName" />
+
+<input type="button" value="Click Me" onclick="myFunction1();" />
+<input type="button" value="Click Me" onclick="myFunction2();" />
+
+<br />
+<br />
+
+<div id="tblMaterialList">
+    <table>
+        <tr>
+            <th>Material ID</th>
+            <th>Material Name</th>
+        </tr>
+    </table>
+</div>
 
